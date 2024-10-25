@@ -1,0 +1,133 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-21 16:38+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\AppEticaret\templates\category.html:17
+msgid "Markalar"
+msgstr ""
+
+#: .\AppEticaret\templates\category.html:38
+msgid "Renkler"
+msgstr ""
+
+#: .\AppEticaret\templates\category.html:59
+msgid "Kasa Şekilleri"
+msgstr ""
+
+#: .\AppEticaret\templates\category.html:80
+msgid "Kayış Tipleri"
+msgstr ""
+
+#: .\AppEticaret\templates\category.html:101
+msgid "Cam Özellikleri"
+msgstr ""
+
+#: .\AppEticaret\templates\category.html:121
+msgid "Tarzlar"
+msgstr ""
+
+#: .\AppEticaret\templates\category.html:141
+msgid "Mekanizmalar"
+msgstr ""
+
+#: .\AppEticaret\templates\category.html:163
+msgid "Fiyat"
+msgstr ""
+
+#: .\AppEticaret\templates\index.html:121
+msgid "Kadın Saatler"
+msgstr ""
+
+#: .\AppEticaret\templates\index.html:123
+msgid "Tüm Kadın Saatleri"
+msgstr ""
+
+#: .\AppEticaret\templates\index.html:137
+#: .\AppEticaret\templates\index.html:179
+msgid "Sepete Ekle"
+msgstr ""
+
+#: .\AppEticaret\templates\index.html:163
+msgid "Erkek Saatleri"
+msgstr ""
+
+#: .\AppEticaret\templates\index.html:165
+msgid "Tüm Erkek Saatleri"
+msgstr ""
+
+#: .\AppEticaret\templates\partials\_header.html:63
+msgid "Ana Sayfa"
+msgstr ""
+
+#: .\AppEticaret\templates\partials\_header.html:66
+msgid "Kadın Saat"
+msgstr ""
+
+#: .\AppEticaret\templates\partials\_header.html:69
+msgid "Erkek Saat"
+msgstr ""
+
+#: .\AppEticaret\templates\partials\_header.html:72
+msgid "Çocuk Saat"
+msgstr ""
+
+#: .\AppEticaret\templates\partials\_header.html:75
+msgid "Akıllı Saat"
+msgstr ""
+
+#: .\AppEticaret\templates\partials\_header.html:90
+msgid "Türkçe"
+msgstr ""
+
+#: .\AppEticaret\templates\partials\_header.html:94
+msgid "İngilizce"
+msgstr ""
+
+#: .\AppEticaret\templates\partials\_header.html:149
+#: .\AppEticaret\templates\user\login.html:10
+#: .\AppEticaret\templates\user\login.html:24
+msgid "GİRİŞ YAP"
+msgstr ""
+
+#: .\AppEticaret\templates\partials\_header.html:155
+msgid "ÜYE OL"
+msgstr ""
+
+#: .\AppEticaret\templates\user\login.html:16
+#: .\AppEticaret\templates\user\register.html:24
+msgid "E-posta"
+msgstr ""
+
+#: .\AppEticaret\templates\user\login.html:21
+#: .\AppEticaret\templates\user\register.html:29
+msgid "Şifre"
+msgstr ""
+
+#: .\AppEticaret\templates\user\register.html:10
+#: .\AppEticaret\templates\user\register.html:32
+msgid "KAYIT OL"
+msgstr ""
+
+#: .\AppEticaret\templates\user\register.html:16
+msgid "Ad"
+msgstr ""
+
+#: .\AppEticaret\templates\user\register.html:20
+msgid "Soyad"
+msgstr ""

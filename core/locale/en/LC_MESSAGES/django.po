@@ -1,0 +1,139 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-21 16:38+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\AppEticaret\templates\category.html:17
+msgid "Markalar"
+msgstr "Brands"
+
+#: .\AppEticaret\templates\category.html:38
+msgid "Renkler"
+msgstr "Colors"
+
+#: .\AppEticaret\templates\category.html:59
+msgid "Kasa Şekilleri"
+msgstr "Case Shapes"
+
+#: .\AppEticaret\templates\category.html:80
+msgid "Kayış Tipleri"
+msgstr "Belt Types"
+
+#: .\AppEticaret\templates\category.html:101
+msgid "Cam Özellikleri"
+msgstr "Glass Properties"
+
+#: .\AppEticaret\templates\category.html:121
+msgid "Tarzlar"
+msgstr "Styles"
+
+#: .\AppEticaret\templates\category.html:141
+msgid "Mekanizmalar"
+msgstr "mechanisms"
+
+#: .\AppEticaret\templates\category.html:163
+msgid "Fiyat"
+msgstr "Price"
+
+#: .\AppEticaret\templates\index.html:121
+msgid "Kadın Saatler"
+msgstr "Women's Watches"
+
+#: .\AppEticaret\templates\index.html:123
+msgid "Tüm Kadın Saatleri"
+msgstr "All Women's Watches"
+
+#: .\AppEticaret\templates\index.html:137
+#: .\AppEticaret\templates\index.html:179
+msgid "Sepete Ekle"
+msgstr "Add to Cart"
+
+#: .\AppEticaret\templates\index.html:163
+msgid "Erkek Saatleri"
+msgstr "Men's Watches"
+
+#: .\AppEticaret\templates\index.html:165
+msgid "Tüm Erkek Saatleri"
+msgstr "All Men's Watches"
+
+#: .\AppEticaret\templates\partials\_header.html:63
+msgid "Ana Sayfa"
+msgstr "Home"
+
+#: .\AppEticaret\templates\partials\_header.html:66
+msgid "Kadın Saat"
+msgstr "Women's Watch"
+
+#: .\AppEticaret\templates\partials\_header.html:69
+msgid "Erkek Saat"
+msgstr "Men's Watch"
+
+#: .\AppEticaret\templates\partials\_header.html:72
+msgid "Çocuk Saat"
+msgstr "Children's Watch"
+
+#: .\AppEticaret\templates\partials\_header.html:75
+msgid "Akıllı Saat"
+msgstr "Smart Watch"
+
+#: .\AppEticaret\templates\partials\_header.html:90
+msgid "Türkçe"
+msgstr "Turkish"
+
+#: .\AppEticaret\templates\partials\_header.html:94
+msgid "İngilizce"
+msgstr "English"
+
+#: .\AppEticaret\templates\partials\_header.html:149
+#: .\AppEticaret\templates\user\login.html:10
+#: .\AppEticaret\templates\user\login.html:24
+msgid "GİRİŞ YAP"
+msgstr "LOG IN"
+
+#: .\AppEticaret\templates\partials\_header.html:155
+msgid "ÜYE OL"
+msgstr "SIGN UP"
+
+#: .\AppEticaret\templates\user\login.html:16
+#: .\AppEticaret\templates\user\register.html:24
+msgid "E-posta"
+msgstr "E-mail"
+
+#: .\AppEticaret\templates\user\login.html:21
+#: .\AppEticaret\templates\user\register.html:29
+msgid "Şifre"
+msgstr "Password"
+
+#: .\AppEticaret\templates\user\register.html:10
+#: .\AppEticaret\templates\user\register.html:32
+msgid "KAYIT OL"
+msgstr "SIGN UP"
+
+#: .\AppEticaret\templates\user\register.html:16
+msgid "Ad"
+msgstr "Name"
+
+#: .\AppEticaret\templates\user\register.html:20
+msgid "Soyad"
+msgstr "Surname"
+
+#~ msgid "Mobil Ürünler"
+#~ msgstr "Mobile Product"
+
+#~ msgid "Satın Alın"
+#~ msgstr "Go To Shop"

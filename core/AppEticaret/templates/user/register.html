@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+
+
+{% block content %}
+
+    <div class="container" style="padding:250px 0;">
+         <h1 class="text-center"> {% trans 'KAYIT OL' %}</h1>
+        <div class="row" >
+           <form method="POST" action="" class="d-flex justify-content-center">
+               {% csrf_token %}
+               <div class="col-9">
+                   <div class="mb-3">
+  <label for="name" class="form-label"> {% trans 'Ad' %}</label>
+  <input type="text" class="form-control" id="name"  name="name" required>
+                  </div>
+                   <div class="mb-3">
+  <label for="surname" class="form-label"> {% trans 'Soyad' %}</label>
+  <input type="text" class="form-control" id="surname"  name="surname" required>
+                  </div>
+                   <div class="mb-3">
+  <label for="email" class="form-label"> {% trans 'E-posta' %}</label>
+  <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email" required>
+                  </div>
+
+                   <div class="mb-3">
+  <label for="password" class="form-label"> {% trans 'Şifre' %}</label>
+  <input type="password" class="form-control" id="password" placeholder="***********" name="password" required>
+                  </div>
+                   <button type="submit" class="btn btn-primary d-block ms-auto"> {% trans 'KAYIT OL' %}</button>
+
+               </div>
+           </form>
+        </div>
+    </div>
+
+
+{% endblock content %}

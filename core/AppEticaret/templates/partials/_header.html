@@ -1,0 +1,192 @@
+
+{% load static %}
+{% load i18n %}
+
+    <div class="search-popup">
+        <div class="search-popup-container">
+
+          <form role="search" method="get" class="search-form" action="">
+            <input type="search" id="search-form" class="search-field" placeholder="Type and press enter" value="" name="s" />
+            <button type="submit" class="search-submit"><svg class="search"><use xlink:href="#search"></use></svg></button>
+          </form>
+
+          <h5 class="cat-list-title">Browse Categories</h5>
+
+          <ul class="cat-list">
+            <li class="cat-list-item">
+              <a href="#" title="Mobile Phones">Mobile Phones</a>
+            </li>
+            <li class="cat-list-item">
+              <a href="#" title="Smart Watches">Smart Watches</a>
+            </li>
+            <li class="cat-list-item">
+              <a href="#" title="Headphones">Headphones</a>
+            </li>
+            <li class="cat-list-item">
+              <a href="#" title="Accessories">Accessories</a>
+            </li>
+            <li class="cat-list-item">
+              <a href="#" title="Monitors">Monitors</a>
+            </li>
+            <li class="cat-list-item">
+              <a href="#" title="Speakers">Speakers</a>
+            </li>
+            <li class="cat-list-item">
+              <a href="#" title="Memory Cards">Memory Cards</a>
+            </li>
+          </ul>
+
+        </div>
+    </div>
+
+    <header id="header" class="site-header header-scrolled position-fixed text-black bg-light">
+      <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static 'images/main-logo.png' %}"  class="logo">
+          </a>
+          <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <svg class="navbar-icon">
+              <use xlink:href="#navbar-icon"></use>
+            </svg>
+          </button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
+            <div class="offcanvas-header px-4 pb-0">
+              <a class="navbar-brand" href="index.html">
+                <img src="{% static 'images/main-logo.png' %}" class="logo">
+              </a>
+              <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link me-4
+              {% if request.path == '/' %}
+              active
+              {% endif %}
+                " href="{% url 'index' %}">{% trans 'Anasayfa' %}</a>
+            </li>
+                <li class="nav-item">
+                   <a class="nav-link me-4
+              {% if request.GET.urlencode == 'cinsiyet=1' %}
+              active
+              {% endif %}
+              " href="{% url 'category' %}?cinsiyet=1">{% trans 'Kadın Saat' %}</a>
+                </li>
+                <li class="nav-item">
+                   <a class="nav-link me-4
+              {% if request.GET.urlencode == 'cinsiyet=2' %}
+              active
+              {% endif %}
+              " href="{% url 'category' %}?cinsiyet=2">{% trans 'Erkek Saat' %}</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link me-4" href="#smart-watches">{% trans 'Çocuk Saat' %}</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link me-4" href="#yearly-sale">{% trans 'Akıllı Saat' %}</a>
+                </li>
+     <li class="nav-item dropdown">
+    <a data-mdb-dropdown-init class="dropdown-toggle" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+        <i class="
+            {% if request.path|slice:'1:3' == 'en' %}
+            flag-united-kingdom
+            {% else %}
+            flag-turkey
+            {% endif %}
+            flag m-0"></i>
+        {% if request.path|slice:'1:3' == 'en' %}
+        EN
+        {% else %}
+        TR
+        {% endif %}
+        <!-- Aşağı ok simgesi ekleniyor -->
+        <i class="fas fa-chevron-down text-dark ms-2"></i> <!-- Siyah aşağı ok simgesi -->
+    </a>
+
+    <ul class="dropdown-menu" aria-labelledby="Dropdown">
+        <li>
+            <a class="dropdown-item" href="{% url 'set-language' 'tr' %}">
+                <i class="flag-turkey flag"></i>{% trans 'Türkçe' %} <i class="fa fa-check text-success ms-2"></i>
+            </a>
+        </li>
+        <li><hr class="dropdown-divider" /></li>
+        <li>
+            <a class="dropdown-item" href="{% url 'set-language' 'en' %}">
+                <i class="flag-united-kingdom flag"></i>{% trans 'İngilizce' %}</a>
+        </li>
+    </ul>
+</li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                  <div class="user-items ps-5">
+                    <ul class="d-flex justify-content-center align-items-center list-unstyled">
+
+                       <li class="search-item pe-3">
+                        <a href="#" class="search-button">
+                          <svg class="search">
+                            <use xlink:href="#search"></use>
+                          </svg>
+                        </a>
+                      </li>
+                      <li class="pe-3">
+                        <a href="#">
+
+                        </a>
+                      </li>
+
+                       <li class="nav-item dropdown">
+                  <a class="nav-link me-4 dropdown-toggle link-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                    <svg class="user">
+                            <use xlink:href="#user"></use>
+                          </svg></a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a href="{% url 'profile'  %}">Profil</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'logout'  %}">Çıkış Yap</a>
+                    </li>
+                  </ul>
+                </li>
+
+                      <li>
+                        <a href="{% url 'basket' %}" class="position-relative">
+                            <span class="position-absolute top-25 start100 translate-middle badge rounded-pill bg-dark">
+                                {{product_quantity|length}}
+                            </span>
+                          <svg class="cart">
+                            <use xlink:href="#cart"></use>
+                          </svg>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                {% else %}
+
+                <li class="nav-item">
+                  <div class="user-items ps-5">
+                    <ul class="d-flex justify-content-end list-unstyled">
+                      <li class="pe-3">
+                        <a href="{% url 'login' %}">
+                          {% trans 'GİRİŞ YAP' %}
+
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{% url 'register' %}">
+                          {% trans 'ÜYE OL' %}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                {% endif %}
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
