@@ -21,7 +21,7 @@
                                 <div class="accordion-body">
                                     {% for brand in brands %}
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="{{ brand.id }}" id="flexCheckBrand{{ forloop.counter }}" name="marka">
+                                            <input class="form-check-input" type="checkbox" value="{{ brand.brand }}" id="flexCheckBrand{{ forloop.counter }}" name="marka">
                                             <label class="form-check-label" for="flexCheckBrand{{ forloop.counter }}">
                                                 {{ brand.brand }}
                                             </label>
@@ -42,7 +42,7 @@
                                 <div class="accordion-body">
                                     {% for color in color %}
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="{{ color.id }}" id="flexCheckColor{{ forloop.counter }}" name="renk">
+                                            <input class="form-check-input" type="checkbox" value="{{ color.color }}" id="flexCheckColor{{ forloop.counter }}" name="renk">
                                             <label class="form-check-label" for="flexCheckColor{{ forloop.counter }}">
                                                 {{ color.color }}
                                             </label>
@@ -63,7 +63,7 @@
                                 <div class="accordion-body">
                                     {% for case_shape in case_shapes %}
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="{{ case_shape.id }}" id="flexCheckCase{{ forloop.counter }}" name="kasa_sekli">
+                                            <input class="form-check-input" type="checkbox" value="{{ case_shape.case_shape }}" id="flexCheckCase{{ forloop.counter }}" name="kasa_sekli">
                                             <label class="form-check-label" for="flexCheckCase{{ forloop.counter }}">
                                                 {{ case_shape.case_shape }}
                                             </label>
@@ -84,7 +84,7 @@
                                 <div class="accordion-body">
                                     {% for strap_type in strap_types %}
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="{{ strap_type.id }}" id="flexCheckStrap{{ forloop.counter }}" name="kayis_tipi">
+                                            <input class="form-check-input" type="checkbox" value="{{ strap_type.strap_type }}" id="flexCheckStrap{{ forloop.counter }}" name="kayis_tipi">
                                             <label class="form-check-label" for="flexCheckStrap{{ forloop.counter }}">
                                                 {{ strap_type.strap_type }}
                                             </label>
@@ -105,7 +105,7 @@
                                 <div class="accordion-body">
                                     {% for glass_feature in glass_features %}
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="{{ glass_feature.id }}" id="flexCheckGlass{{ forloop.counter }}" name="cam_ozellik">
+                                            <input class="form-check-input" type="checkbox" value="{{ glass_feature.glass_feature }}" id="flexCheckGlass{{ forloop.counter }}" name="cam_ozellik">
                                             <label class="form-check-label" for="flexCheckGlass{{ forloop.counter }}">
                                                 {{ glass_feature.glass_feature }}
                                             </label>
@@ -125,7 +125,7 @@
         <div class="accordion-body">
             {% for style in styles %}
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="{{ style.id }}" id="flexCheckStyle{{ forloop.counter }}" name="tarz">
+                    <input class="form-check-input" type="checkbox" value="{{ style.style }}" id="flexCheckStyle{{ forloop.counter }}" name="tarz">
                     <label class="form-check-label" for="flexCheckStyle{{ forloop.counter }}">
                         {{ style.style }}
                     </label>
@@ -145,7 +145,7 @@
                                 <div class="accordion-body">
                                     {% for mechanism in mechanism %}
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="{{ mechanism.id }}" id="flexCheckMechanism{{ forloop.counter }}" name="mekanizma">
+                                            <input class="form-check-input" type="checkbox" value="{{ mechanism.mechanism }}" id="flexCheckMechanism{{ forloop.counter }}" name="mekanizma">
                                             <label class="form-check-label" for="flexCheckMechanism{{ forloop.counter }}">
                                                 {{ mechanism.mechanism }}
                                             </label>
@@ -186,31 +186,39 @@
 
 
 
-            <div class="col-9">
-                <div class="row">
-                    {% for product in products %}
-                        <div class="col-4">
-                            <div class="card" style="width: 100%;">
-                                <img src="{{ product.image.url }}" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title text-dark">{{ product.brand }}</h5>
-                                    <p class="card-text text-dark">{{ product.model }}</p>
-                                    <p class="card-text text-dark">{{ product.price | intcomma }} TL</p>
-                                    <div class="d-flex justify-content-between">
-                                         <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Detaya Git</a>
-                                        <form method="POST">
-                                            {% csrf_token %}
-                                            <input type="hidden" value="{{product.id}}" name="product_id">
-                                            <button type="submit" class="btn btn-primary">Sepete Ekle</button>
-                                        </form>
-
-
-                                    </div>
-                                </div>
-                            </div>
+       <div class="col-9">
+    <div class="row">
+        {% for product in products %}
+            <div class="col-4">
+                <div class="card position-relative" style="width: 100%;">
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">{{ product.brand }}</h5>
+                        <p class="card-text text-dark">{{ product.model }}</p>
+                        <p class="card-text text-dark">{{ product.price | intcomma }} TL</p>
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Detaya Git</a>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{ product.id }}" name="product_id">
+                                <button type="submit" class="position-absolute top-0 end-0" name="submit" value="btnfavori">
+                                    <i class="
+                                       {% if product.id in favori_products %}
+                                          fa-solid fa-heart
+                                       {% else %}
+                                          fa-regular fa-heart
+                                       {% endif %}
+                                    "></i>
+                                </button>
+                                <button type="submit" class="btn btn-primary" name="submit" value="btnbasket">Sepete Ekle</button>
+                            </form>
                         </div>
-                    {% endfor %}
+                    </div>
                 </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
                 <div class="row">
                              <nav aria-label="..." class="d-flex justify-content-center mt-5">
                     <ul class="pagination">

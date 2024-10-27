@@ -15,15 +15,23 @@
                         <form method="post">
                           {% csrf_token %}
                             <div class="row">
-                                <div class="col mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">{% trans 'Ad' %}</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ profil.user.first_name }}" name="first_name">
-                                  </div>
-                                  <div class="col mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">{% trans 'Soyad' %}</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ profil.user.last_name }}" name="last_name">
-                                  </div>
-                            </div>
+    <div class="col mb-3">
+        <label for="exampleInputEmail1" class="form-label">{% trans 'Ad' %}</label>
+        {% if profil %}
+            <input type="text" class="form-control" id="exampleInputEmail1" value="{{ profil.user.first_name }}" name="first_name">
+        {% else %}
+            <p>Profil bilgileri bulunamadı.</p>
+        {% endif %}
+    </div>
+    <div class="col mb-3">
+        <label for="exampleInputEmail1" class="form-label">{% trans 'Soyad' %}</label>
+        {% if profil %}
+            <input type="text" class="form-control" id="exampleInputEmail1" value="{{ profil.user.last_name }}" name="last_name">
+        {% else %}
+            <p>Profil bilgileri bulunamadı.</p>
+        {% endif %}
+    </div>
+</div>
                             <div class="row">
                                 <div class="col mb-3">
                                     <label for="exampleInputEmail1" class="form-label">{% trans 'E-Posta Adresi' %}</label>

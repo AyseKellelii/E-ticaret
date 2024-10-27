@@ -59,6 +59,7 @@
             </div>
             <div class="offcanvas-body">
               <ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
+      {% if request.path != "/" %}
             <li class="nav-item">
               <a class="nav-link me-4
               {% if request.path == '/' %}
@@ -66,26 +67,55 @@
               {% endif %}
                 " href="{% url 'index' %}">{% trans 'Anasayfa' %}</a>
             </li>
-                <li class="nav-item">
-                   <a class="nav-link me-4
+            <li class="nav-item">
+              <a class="nav-link me-4
               {% if request.GET.urlencode == 'cinsiyet=1' %}
               active
               {% endif %}
               " href="{% url 'category' %}?cinsiyet=1">{% trans 'Kadın Saat' %}</a>
-                </li>
-                <li class="nav-item">
-                   <a class="nav-link me-4
+            </li>
+            <li class="nav-item">
+              <a class="nav-link me-4
               {% if request.GET.urlencode == 'cinsiyet=2' %}
               active
               {% endif %}
               " href="{% url 'category' %}?cinsiyet=2">{% trans 'Erkek Saat' %}</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link me-4" href="#smart-watches">{% trans 'Çocuk Saat' %}</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link me-4" href="#yearly-sale">{% trans 'Akıllı Saat' %}</a>
-                </li>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link me-4" href="#smart-watches">{% trans 'Çocuk Saat' %}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link me-4" href="#yearly-sale">{% trans 'Akıllı Saat' %}</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link me-4
+              {% if request.path == 'index' %}
+              active
+              {% endif %}
+                " href="#billboard">{% trans 'Anasayfa' %}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link me-4
+              {% if request.GET.urlencode == 'cinsiyet=1' %}
+              active
+              {% endif %}
+              " href="#company-services">{% trans 'Kadın Saat' %}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link me-4
+              {% if request.GET.urlencode == 'cinsiyet=2' %}
+              active
+              {% endif %}
+              " href="#mobile-products">{% trans 'Erkek Saat' %}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link me-4" href="#smart-watches">{% trans 'Çocuk Saat' %}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link me-4" href="#yearly-sale">{% trans 'Akıllı Saat' %}</a>
+            </li>
+            {% endif %}
      <li class="nav-item dropdown">
     <a data-mdb-dropdown-init class="dropdown-toggle" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
         <i class="
@@ -141,6 +171,10 @@
                             <use xlink:href="#user"></use>
                           </svg></a>
                   <ul class="dropdown-menu">
+                      <li>
+                      <a href="{% url 'favorite'  %}">Favoriler</a>
+                    </li>
+                    <li>
                     <li>
                       <a href="{% url 'profile'  %}">Profil</a>
                     </li>

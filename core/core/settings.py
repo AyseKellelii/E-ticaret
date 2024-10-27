@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'eticaret2',  # PostgreSQL veritabanınızın adı
+        'NAME': 'eticaret3',  # PostgreSQL veritabanınızın adı
         'USER': 'postgres',   # PostgreSQL kullanıcı adı
         'PASSWORD': '12345',       # PostgreSQL kullanıcı şifresi
         'HOST': 'localhost',          # Veritabanı sunucusu (genelde 'localhost')

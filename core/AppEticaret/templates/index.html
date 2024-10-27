@@ -2,6 +2,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
+{% load humanize %}
 
 {% block content %}
 
@@ -14,8 +15,8 @@
               <div class="row d-flex align-items-center">
                 <div class="col-md-6">
                   <div class="banner-content">
-                    <h1 class="display-2 text-uppercase text-dark pb-5">Your Products Are Great.</h1>
-                    <a href="shop.html" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">Shop Product</a>
+                    <h1 class="display-2 text-uppercase text-dark pb-5">{% trans 'Ürünleriniz Harika.' %}</h1>
+                    <a href="{% url 'category' %}" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">{% trans 'Ürün Alışverişi Yap' %}</a>
                   </div>
                 </div>
                 <div class="col-md-5">
@@ -128,25 +129,31 @@
         {% for product in products %}
         {% if product.gender.gender == "kadın" %}
         <div class="swiper-slide">
-            <div class="product-card position-relative">
-                <div class="image-holder">
-                    <img src="{{ product.image.url }}" alt="product-item" class="img-fluid">
-                </div>
-                <div class="cart-concern position-absolute">
-                    <div class="cart-button d-flex">
-                        <a href="#" class="btn btn-medium btn-black">{% trans 'Sepete Ekle' %}<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
+             <div class="card position-relative" style="width: 100%;">
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">{{ product.brand }}</h5>
+                        <p class="card-text text-dark">{{ product.model }}</p>
+                        <p class="card-text text-dark">{{ product.price | intcomma }} TL</p>
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Detaya Git</a>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{ product.id }}" name="product_id">
+                                <button type="submit" class="position-absolute top-0 end-0" name="submit" value="btnfavori">
+                                    <i class="
+                                       {% if product.id in favori_products %}
+                                          fa-solid fa-heart
+                                       {% else %}
+                                          fa-regular fa-heart
+                                       {% endif %}
+                                    "></i>
+                                </button>
+                                <button type="submit" class="btn btn-primary" name="submit" value="btnbasket">Sepete Ekle</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div class="card-detail d-flex justify-content-between align-items-baseline flex-column pt-3">
-                    <h3 class="card-title text-uppercase">
-                        {{ product.brand }}
-                    </h3>
-                    <h6 class="card-title text-uppercase">
-                        {{ product.model }}
-                    </h6>
-                </div>
-                <span class="item-price text-primary">{{ product.price }} TL</span>
-            </div>
         </div>
         {% endif %}
         {% endfor %}
@@ -170,25 +177,31 @@
               {% for product in products %}
         {% if product.gender.gender == "erkek" %}
              <div class="swiper-slide">
-            <div class="product-card position-relative">
-                <div class="image-holder">
-                    <img src="{{ product.image.url }}" alt="product-item" class="img-fluid">
-                </div>
-                <div class="cart-concern position-absolute">
-                    <div class="cart-button d-flex">
-                        <a href="#" class="btn btn-medium btn-black">{% trans 'Sepete Ekle' %}<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
+             <div class="card position-relative" style="width: 100%;">
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">{{ product.brand }}</h5>
+                        <p class="card-text text-dark">{{ product.model }}</p>
+                        <p class="card-text text-dark">{{ product.price | intcomma }} TL</p>
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Detaya Git</a>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{ product.id }}" name="product_id">
+                                <button type="submit" class="position-absolute top-0 end-0" name="submit" value="btnfavori">
+                                    <i class="
+                                       {% if product.id in favori_products %}
+                                          fa-solid fa-heart
+                                       {% else %}
+                                          fa-regular fa-heart
+                                       {% endif %}
+                                    "></i>
+                                </button>
+                                <button type="submit" class="btn btn-primary" name="submit" value="btnbasket">Sepete Ekle</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div class="card-detail d-flex justify-content-between align-items-baseline flex-column pt-3">
-                    <h3 class="card-title text-uppercase">
-                        {{ product.brand }}
-                    </h3>
-                    <h6 class="card-title text-uppercase">
-                        {{ product.model }}
-                    </h6>
-                </div>
-                <span class="item-price text-primary">{{ product.price }} TL</span>
-            </div>
         </div>
 
                {% endif %}
@@ -200,7 +213,7 @@
       </div>
       <div class="swiper-pagination position-absolute text-center"></div>
     </section>
-    <section id="yearly-sale" class="bg-light-blue overflow-hidden mt-5 padding-xlarge" style="background-image: url('images/single-image1.png');background-position: right; background-repeat: no-repeat;">
+    <section id="yearly-sale" class="bg-light-blue overflow-hidden mt-5 padding-xlarge" style="background-image: url({% static 'images/single-image1.png' %});background-position: right; background-repeat: no-repeat;">
       <div class="row d-flex flex-wrap align-items-center">
         <div class="col-md-6 col-sm-12">
           <div class="text-content offset-4 padding-medium">
@@ -210,7 +223,7 @@
           </div>
         </div>
         <div class="col-md-6 col-sm-12">
-          
+
         </div>
       </div>
     </section>
@@ -218,57 +231,56 @@
       <div class="container">
         <div class="row">
           <div class="display-header d-flex justify-content-between pb-3">
-            <h2 class="display-7 text-dark text-uppercase">Latest Posts</h2>
+            <h2 class="display-7 text-dark text-uppercase">{% trans 'Saat Tutkunlarına Özel Bilgiler' %}</h2>
             <div class="btn-right">
-              <a href="blog.html" class="btn btn-medium btn-normal text-uppercase">Read Blog</a>
+              <a href="https://tr.kuzminykh.org/1312-50-interesting-facts-about-watches.html" class="btn btn-medium btn-normal text-uppercase">{% trans 'Daha Fazla' %}</a>
             </div>
           </div>
           <div class="post-grid d-flex flex-wrap justify-content-between">
             <div class="col-lg-4 col-sm-12">
               <div class="card border-none me-3">
                 <div class="card-image">
-                  <img src="{% static 'images/post-item1.jpg' %}" alt="" class="img-fluid">
+                  <img src="{% static 'images/dalis_saati.jpg' %}" alt="" class="img-fluid">
                 </div>
               </div>
               <div class="card-body text-uppercase">
                 <div class="card-meta text-muted">
-                  <span class="meta-date">feb 22, 2023</span>
-                  <span class="meta-category">- Gadgets</span>
+                  <span class="meta-date">1926-</span>
+                  <span class="meta-category">Dalgıç Saatleri</span>
                 </div>
                 <h3 class="card-title">
-                  <a href="#">Get some cool gadgets in 2023</a>
+                  <a href="#">Su altında çalışabilen ilk saat 1926'da Rolex tarafından üretilmiştir. Bu saatler özellikle dalgıçlar için tasarlanmıştır ve suya dayanıklı özel malzemelerden yapılır.</a>
                 </h3>
               </div>
             </div>
             <div class="col-lg-4 col-sm-12">
               <div class="card border-none me-3">
                 <div class="card-image">
-                  <img src="{% static 'images/post-item2.jpg' %}" alt="" class="img-fluid">
+                  <img src="{% static 'images/ilk_mekanik_saat.webp' %}" alt="" class="img-fluid">
                 </div>
               </div>
               <div class="card-body text-uppercase">
                 <div class="card-meta text-muted">
-                  <span class="meta-date">feb 25, 2023</span>
-                  <span class="meta-category">- Technology</span>
+                  <span class="meta-category">İlk Mekanik Saat</span>
                 </div>
                 <h3 class="card-title">
-                  <a href="#">Technology Hack You Won't Get</a>
+                  <a href="#">İlk mekanik saat 13. yüzyılda Avrupa’da yapılmıştır. O dönemde saatler genellikle kiliselerde bulunurdu ve halka zamanı duyurmak için çan sesi kullanılırdı.</a>
                 </h3>
               </div>
             </div>
             <div class="col-lg-4 col-sm-12">
               <div class="card border-none me-3">
                 <div class="card-image">
-                  <img src="{% static 'images/post-item3.jpg' %}" alt="" class="img-fluid">
+                  <img src="{% static 'images/en_pahalı.jpg' %}" alt="" class="img-fluid">
                 </div>
               </div>
               <div class="card-body text-uppercase">
                 <div class="card-meta text-muted">
-                  <span class="meta-date">feb 22, 2023</span>
-                  <span class="meta-category">- Camera</span>
+                  <span class="meta-date">2019</span>
+                  <span class="meta-category">-Dünyanın En Pahalı Saati</span>
                 </div>
                 <h3 class="card-title">
-                  <a href="#">Top 10 Small Camera In The World</a>
+                  <a href="#">Şimdiye kadar üretilen en pahalı saat, İsviçreli lüks saat markası Patek Philippe'in "Grandmaster Chime" modeli. Bu saat 2019 yılında yapılan açık artırmada 31 milyon dolara satıldı.</a>
                 </h3>
               </div>
             </div>
@@ -295,7 +307,7 @@
                 <div class="swiper-slide text-center d-flex justify-content-center">
                   <div class="review-item col-md-10">
                     <i class="icon icon-review"></i>
-                    <blockquote>“Tempus oncu enim pellen tesque este pretium in neque, elit morbi sagittis lorem habi mattis Pellen tesque pretium feugiat vel morbi suspen dise sagittis lorem habi tasse morbi.”</blockquote>
+                    <blockquote>“Saatin tiktakları, hayatın geçiciliğini hatırlatır.”</blockquote>
                     <div class="rating">
                       <svg class="star star-fill">
                         <use xlink:href="#star-fill"></use>
@@ -313,15 +325,13 @@
                         <use xlink:href="#star-empty"></use>
                       </svg>
                     </div>
-                    <div class="author-detail">
-                      <div class="name text-dark text-uppercase pt-2">Emma Chamberlin</div>
-                    </div>
+                    <div></div>
                   </div>
                 </div>
                 <div class="swiper-slide text-center d-flex justify-content-center">
                   <div class="review-item col-md-10">
                     <i class="icon icon-review"></i>
-                    <blockquote>“A blog is a digital publication that can complement a website or exist independently. A blog may include articles, short posts, listicles, infographics, videos, and other digital content.”</blockquote>
+                    <blockquote>“Zaman, en değerli hediyedir; onu doğru değerlendirin.”</blockquote>
                     <div class="rating">
                       <svg class="star star-fill">
                         <use xlink:href="#star-fill"></use>
@@ -338,9 +348,6 @@
                       <svg class="star star-empty">
                         <use xlink:href="#star-empty"></use>
                       </svg>
-                    </div>
-                    <div class="author-detail">
-                      <div class="name text-dark text-uppercase pt-2">Jennie Rose</div>
                     </div>
                   </div>
                 </div>
@@ -356,88 +363,7 @@
       </div>
       <div class="swiper-pagination"></div>
     </section>
-    <section id="subscribe" class="container-grid padding-large position-relative overflow-hidden">
-      <div class="container">
-        <div class="row">
-          <div class="subscribe-content bg-dark d-flex flex-wrap justify-content-center align-items-center padding-medium">
-            <div class="col-md-6 col-sm-12">
-              <div class="display-header pe-3">
-                <h2 class="display-7 text-uppercase text-light">Subscribe Us Now</h2>
-                <p>Get latest news, updates and deals directly mailed to your inbox.</p>
-              </div>
-            </div>
-            <div class="col-md-5 col-sm-12">
-              <form class="subscription-form validate">
-                <div class="input-group flex-wrap">
-                  <input class="form-control btn-rounded-none" type="email" name="EMAIL" placeholder="Your email address here" required="">
-                  <button class="btn btn-medium btn-primary text-uppercase btn-rounded-none" type="submit" name="subscribe">Subscribe</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="instagram" class="padding-large overflow-hidden no-padding-top">
-      <div class="container">
-        <div class="row">
-          <div class="display-header text-uppercase text-dark text-center pb-3">
-            <h2 class="display-7">Shop Our Insta</h2>
-          </div>
-          <div class="d-flex flex-wrap">
-            <figure class="instagram-item pe-2">
-              <a href="https://templatesjungle.com/" class="image-link position-relative">
-                <img src="{% static 'images/insta-item1.jpg' %}" alt="instagram" class="insta-image">
-                <div class="icon-overlay position-absolute d-flex justify-content-center">
-                  <svg class="instagram">
-                    <use xlink:href="#instagram"></use>
-                  </svg>
-                </div>
-              </a>
-            </figure>
-            <figure class="instagram-item pe-2">
-              <a href="https://templatesjungle.com/" class="image-link position-relative">
-                <img src="{% static 'images/insta-item2.jpg' %}" alt="instagram" class="insta-image">
-                <div class="icon-overlay position-absolute d-flex justify-content-center">
-                  <svg class="instagram">
-                    <use xlink:href="#instagram"></use>
-                  </svg>
-                </div>
-              </a>
-            </figure>
-            <figure class="instagram-item pe-2">
-              <a href="https://templatesjungle.com/" class="image-link position-relative">
-                <img src="{% static 'images/insta-item3.jpg' %}" alt="instagram" class="insta-image">
-                <div class="icon-overlay position-absolute d-flex justify-content-center">
-                  <svg class="instagram">
-                    <use xlink:href="#instagram"></use>
-                  </svg>
-                </div>
-              </a>
-            </figure>
-            <figure class="instagram-item pe-2">
-              <a href="https://templatesjungle.com/" class="image-link position-relative">
-                <img src="{% static 'images/insta-item4.jpg' %}" alt="instagram" class="insta-image">
-                <div class="icon-overlay position-absolute d-flex justify-content-center">
-                  <svg class="instagram">
-                    <use xlink:href="#instagram"></use>
-                  </svg>
-                </div>
-              </a>
-            </figure>
-            <figure class="instagram-item pe-2">
-              <a href="https://templatesjungle.com/" class="image-link position-relative">
-                <img src="{% static 'images/insta-item5.jpg' %}" alt="instagram" class="insta-image">
-                <div class="icon-overlay position-absolute d-flex justify-content-center">
-                  <svg class="instagram">
-                    <use xlink:href="#instagram"></use>
-                  </svg>
-                </div>
-              </a>
-            </figure>
-          </div>
-        </div>
-      </div>
-    </section>
+
+
 
 {% endblock %}
