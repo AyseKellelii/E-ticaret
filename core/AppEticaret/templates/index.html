@@ -32,8 +32,8 @@
               <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-md-6">
                   <div class="banner-content">
-                    <h1 class="display-2 text-uppercase text-dark pb-5">Technology Hack You Won't Get</h1>
-                    <a href="shop.html" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">Shop Product</a>
+                    <h1 class="display-2 text-uppercase text-dark pb-5">TTarzınıza Güç Katacak</h1>
+                    <a href="{% url 'category' %}" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">Alışverişe Başla</a>
                   </div>
                 </div>
                 <div class="col-md-5">
@@ -68,9 +68,9 @@
                 </svg>
               </div>
               <div class="icon-box-content">
-                <h3 class="card-title text-uppercase text-dark">Free delivery</h3>
-                <p>Consectetur adipi elit lorem ipsum dolor sit amet.</p>
-              </div>
+    <h3 class="card-title text-uppercase text-dark">Ücretsiz Kargo</h3>
+    <p>Tarzınızı tamamlayan saatler, şimdi ücretsiz kargo fırsatıyla kapınızda!</p>
+</div>
             </div>
           </div>
           <div class="col-lg-3 col-md-6 pb-3">
@@ -81,9 +81,9 @@
                 </svg>
               </div>
               <div class="icon-box-content">
-                <h3 class="card-title text-uppercase text-dark">Quality guarantee</h3>
-                <p>Dolor sit amet orem ipsu mcons ectetur adipi elit.</p>
-              </div>
+    <h3 class="card-title text-uppercase text-dark">Kalite Garantisi</h3>
+    <p>En kaliteli saatleri size güvenle sunuyoruz.</p>
+</div>
             </div>
           </div>
           <div class="col-lg-3 col-md-6 pb-3">
@@ -94,22 +94,9 @@
                 </svg>
               </div>
               <div class="icon-box-content">
-                <h3 class="card-title text-uppercase text-dark">Daily offers</h3>
-                <p>Amet consectetur adipi elit loreme ipsum dolor sit.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 pb-3">
-            <div class="icon-box d-flex">
-              <div class="icon-box-icon pe-3 pb-3">
-                <svg class="shield-plus">
-                  <use xlink:href="#shield-plus" />
-                </svg>
-              </div>
-              <div class="icon-box-content">
-                <h3 class="card-title text-uppercase text-dark">100% secure payment</h3>
-                <p>Rem Lopsum dolor sit amet, consectetur adipi elit.</p>
-              </div>
+    <h3 class="card-title text-uppercase text-dark">Günlük Fırsatlar</h3>
+    <p>Her gün özel indirimlerle tarzınızı yansıtın!</p>
+</div>
             </div>
           </div>
         </div>
@@ -140,15 +127,15 @@
                             <form method="POST">
                                 {% csrf_token %}
                                 <input type="hidden" value="{{ product.id }}" name="product_id">
-                                <button type="submit" class="position-absolute top-0 end-0" name="submit" value="btnfavori">
-                                    <i class="
-                                       {% if product.id in favori_products %}
-                                          fa-solid fa-heart
-                                       {% else %}
-                                          fa-regular fa-heart
-                                       {% endif %}
-                                    "></i>
-                                </button>
+                                <button type="button" class="favorite-btn position-absolute top-0 end-0" data-id="{{ product.id }}">
+    <i class="
+       {% if product.id in favori_products %}
+          fa-solid fa-heart
+       {% else %}
+          fa-regular fa-heart
+       {% endif %}
+    "></i>
+</button>
                                 <button type="submit" class="btn btn-primary" name="submit" value="btnbasket">Sepete Ekle</button>
                             </form>
                         </div>
@@ -213,20 +200,7 @@
       </div>
       <div class="swiper-pagination position-absolute text-center"></div>
     </section>
-    <section id="yearly-sale" class="bg-light-blue overflow-hidden mt-5 padding-xlarge" style="background-image: url({% static 'images/single-image1.png' %});background-position: right; background-repeat: no-repeat;">
-      <div class="row d-flex flex-wrap align-items-center">
-        <div class="col-md-6 col-sm-12">
-          <div class="text-content offset-4 padding-medium">
-            <h3>10% off</h3>
-            <h2 class="display-2 pb-5 text-uppercase text-dark">New year sale</h2>
-            <a href="shop.html" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">Shop Sale</a>
-          </div>
-        </div>
-        <div class="col-md-6 col-sm-12">
 
-        </div>
-      </div>
-    </section>
     <section id="latest-blog" class="padding-large">
       <div class="container">
         <div class="row">
@@ -288,82 +262,35 @@
         </div>
       </div>
     </section>
-    <section id="testimonials" class="position-relative">
-      <div class="container">
-        <div class="row">
-          <div class="review-content position-relative">
-            <div class="swiper-icon swiper-arrow swiper-arrow-prev position-absolute d-flex align-items-center">
-              <svg class="chevron-left">
-                <use xlink:href="#chevron-left" />
-              </svg>
-            </div>
-            <div class="swiper testimonial-swiper">
-              <div class="quotation text-center">
-                <svg class="quote">
-                  <use xlink:href="#quote" />
-                </svg>
-              </div>
-              <div class="swiper-wrapper">
-                <div class="swiper-slide text-center d-flex justify-content-center">
-                  <div class="review-item col-md-10">
-                    <i class="icon icon-review"></i>
-                    <blockquote>“Saatin tiktakları, hayatın geçiciliğini hatırlatır.”</blockquote>
-                    <div class="rating">
-                      <svg class="star star-fill">
-                        <use xlink:href="#star-fill"></use>
-                      </svg>
-                      <svg class="star star-fill">
-                        <use xlink:href="#star-fill"></use>
-                      </svg>
-                      <svg class="star star-fill">
-                        <use xlink:href="#star-fill"></use>
-                      </svg>
-                      <svg class="star star-half">
-                        <use xlink:href="#star-half"></use>
-                      </svg>
-                      <svg class="star star-empty">
-                        <use xlink:href="#star-empty"></use>
-                      </svg>
-                    </div>
-                    <div></div>
-                  </div>
-                </div>
-                <div class="swiper-slide text-center d-flex justify-content-center">
-                  <div class="review-item col-md-10">
-                    <i class="icon icon-review"></i>
-                    <blockquote>“Zaman, en değerli hediyedir; onu doğru değerlendirin.”</blockquote>
-                    <div class="rating">
-                      <svg class="star star-fill">
-                        <use xlink:href="#star-fill"></use>
-                      </svg>
-                      <svg class="star star-fill">
-                        <use xlink:href="#star-fill"></use>
-                      </svg>
-                      <svg class="star star-fill">
-                        <use xlink:href="#star-fill"></use>
-                      </svg>
-                      <svg class="star star-half">
-                        <use xlink:href="#star-half"></use>
-                      </svg>
-                      <svg class="star star-empty">
-                        <use xlink:href="#star-empty"></use>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-icon swiper-arrow swiper-arrow-next position-absolute d-flex align-items-center">
-              <svg class="chevron-right">
-                <use xlink:href="#chevron-right" />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="swiper-pagination"></div>
-    </section>
 
+<script>
+
+    document.querySelectorAll('.favorite-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const productId = this.dataset.id;
+
+        fetch('/toggle-favorite/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: JSON.stringify({ product_id: productId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'added') {
+                this.querySelector('i').classList.remove('fa-regular');
+                this.querySelector('i').classList.add('fa-solid');
+            } else if (data.status === 'removed') {
+                this.querySelector('i').classList.remove('fa-solid');
+                this.querySelector('i').classList.add('fa-regular');
+            }
+        })
+        .catch(error => console.error('Hata:', error));
+    });
+});
+</script>
 
 
 {% endblock %}

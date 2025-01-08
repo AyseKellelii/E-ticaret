@@ -40,7 +40,7 @@
                             </h2>
                             <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
                                 <div class="accordion-body">
-                                    {% for color in color %}
+                                    {% for color in colors %}
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="{{ color.color }}" id="flexCheckColor{{ forloop.counter }}" name="renk">
                                             <label class="form-check-label" for="flexCheckColor{{ forloop.counter }}">
@@ -143,7 +143,7 @@
                             </h2>
                             <div id="panelsStayOpen-collapseSeven" class="accordion-collapse collapse">
                                 <div class="accordion-body">
-                                    {% for mechanism in mechanism %}
+                                    {% for mechanism in mechanisms %}
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="{{ mechanism.mechanism }}" id="flexCheckMechanism{{ forloop.counter }}" name="mekanizma">
                                             <label class="form-check-label" for="flexCheckMechanism{{ forloop.counter }}">
@@ -201,15 +201,15 @@
                             <form method="POST">
                                 {% csrf_token %}
                                 <input type="hidden" value="{{ product.id }}" name="product_id">
-                                <button type="submit" class="position-absolute top-0 end-0" name="submit" value="btnfavori">
-                                    <i class="
-                                       {% if product.id in favori_products %}
-                                          fa-solid fa-heart
-                                       {% else %}
-                                          fa-regular fa-heart
-                                       {% endif %}
-                                    "></i>
-                                </button>
+                                <button type="button" class="position-absolute top-0 end-0 favorite-btn" data-id="{{ product.id }}">
+                    <i class="
+                       {% if product.id in favori_products %}
+                          fa-solid fa-heart
+                       {% else %}
+                          fa-regular fa-heart
+                       {% endif %}
+                    "></i>
+                </button>
                                 <button type="submit" class="btn btn-primary" name="submit" value="btnbasket">Sepete Ekle</button>
                             </form>
                         </div>
@@ -349,5 +349,33 @@ if (selectedTarzId.length > 0) {
 
 
      });
+</script>
+
+<script>
+    document.querySelectorAll('.favorite-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = this.dataset.id;
+
+            fetch('/toggle-favorite/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                },
+                body: JSON.stringify({ product_id: productId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'added') {
+                    this.querySelector('i').classList.remove('fa-regular');
+                    this.querySelector('i').classList.add('fa-solid');
+                } else if (data.status === 'removed') {
+                    this.querySelector('i').classList.remove('fa-solid');
+                    this.querySelector('i').classList.add('fa-regular');
+                }
+            })
+            .catch(error => console.error('Hata:', error));
+        });
+    });
 </script>
 {% endblock extrajs %}

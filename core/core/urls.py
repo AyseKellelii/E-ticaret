@@ -13,6 +13,7 @@ urlpatterns = [
     path("basket/", Basket, name="basket"),
     path("favorite/", Favorite_views, name="favorite"),
     path("product_detail/<int:product_id>", Product_detail, name="product_detail"),
+    path('toggle-favorite/', toggle_favorite, name='toggle_favorite'),
 
     # Authenticated
     path("login/", Login, name="login"),

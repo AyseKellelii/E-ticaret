@@ -110,7 +110,8 @@
     <div class="alert alert-danger" role="alert">
          <ul class="messages" style="position: absolute; top:100px; left: 0 ;">
         {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            <li>
+                    {% if message.tags %} class="{{ message.tags }}"{% endif %}>
                 {{ message }}
             </li>
         {% endfor %}

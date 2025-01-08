@@ -5,39 +5,78 @@
 
 {% block content %}
 
-    <div class="container" style="padding: 150px 0">
-        <div class="row">
-            <h1 class="text-center">Favorilerim</h1>
+<div class="container" style="padding: 150px 0">
+    <div class="row">
+        <h1 class="text-center">Favorilerim</h1>
 
-            <div class="col">
-                <div class="row">
-                    {% for product in favorites %}
-                        <div class="col-4">
-                            <div class="card" style="width: 100%;">
-                                <img src="{{ product.product.image.url }}" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title text-dark">{{ product.product.brand }}</h5>
-                                    <p class="card-text text-dark">{{ product.product.model }}</p>
-                                    <p class="card-text text-dark">{{ product.product.price | intcomma }} TL</p>
-                                    <div class="d-flex justify-content-between">
-                                         <a href="{% url 'product_detail' product.product.id %}" class="btn btn-primary">Detaya Git</a>
-                                        <form method="POST">
-                                            {% csrf_token %}
-                                            <input type="hidden" value="{{product.product.id}}" name="product_id">
-                                            <button type="submit" class="btn btn-primary">Sepete Ekle</button>
-                                        </form>
-
-
-                                    </div>
+        <div class="col">
+            <div class="row">
+                {% for product in favorites %}
+                    <div class="col-4">
+                        <div class="card position-relative" style="width: 100%;">
+                            <img src="{{ product.product.image.url }}" class="card-img-top" alt="{{ product.product.brand }}">
+                            <div class="card-body">
+                                <h5 class="card-title text-dark">{{ product.product.brand }}</h5>
+                                <p class="card-text text-dark">{{ product.product.model }}</p>
+                                <p class="card-text text-dark">{{ product.product.price | intcomma }} TL</p>
+                                <div class="d-flex justify-content-between">
+                                    <a href="{% url 'product_detail' product.product.id %}" class="btn btn-primary">Detaya Git</a>
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" value="{{ product.product.id }}" name="product_id">
+                                        <button type="submit" class="btn btn-primary">Sepete Ekle</button>
+                                    </form>
                                 </div>
                             </div>
+                            <!-- Favori Kalp Simgesi -->
+                            <button type="button" class="position-absolute top-0 end-0 favorite-btn" data-id="{{ product.product.id }}" style="background: transparent; border: none;">
+    <i class="
+       {% if product.product.id in favorite_product_ids %}
+          fa-solid fa-heart
+       {% else %}
+          fa-regular fa-heart
+       {% endif %}
+    "></i>
+</button>
                         </div>
-                    {% endfor %}
-
-                </div>
+                    </div>
+                {% endfor %}
             </div>
-
         </div>
     </div>
+</div>
 
 {% endblock content %}
+
+{% block extrajs %}
+<script>
+    document.querySelectorAll('.favorite-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = this.dataset.id;
+
+            fetch('/toggle-favorite/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                },
+                body: JSON.stringify({ product_id: productId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'added') {
+                    this.querySelector('i').classList.remove('fa-regular');
+                    this.querySelector('i').classList.add('fa-solid');
+                } else if (data.status === 'removed') {
+                    this.querySelector('i').classList.remove('fa-solid');
+                    this.querySelector('i').classList.add('fa-regular');
+                    // Favorilerden kaldırıldıysa kartı gizle
+                    const card = this.closest('.card');
+                    card.parentElement.removeChild(card);
+                }
+            })
+            .catch(error => console.error('Hata:', error));
+        });
+    });
+</script>
+{% endblock extrajs %}
